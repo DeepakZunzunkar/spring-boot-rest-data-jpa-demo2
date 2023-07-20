@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Department {
@@ -23,8 +26,20 @@ public class Department {
 			@AttributeOverride(name = "createdon", column = @Column(name = "CREATEDON", updatable = false)) })
 	private BaseProperties baseProperties;
 
+	@OneToOne(mappedBy = "department")
+	@JsonBackReference
+	private Employee employee;
+	
 	public Long getDid() {
 		return did;
+	}
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 
 	public void setDid(Long did) {
