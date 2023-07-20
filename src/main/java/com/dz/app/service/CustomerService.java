@@ -12,9 +12,10 @@ import com.dz.app.entities.Customer;
 @Component
 public class CustomerService {
 
-	public static List<Customer> customers = new ArrayList<Customer>();
+	public static List<Customer> customers = null;
 
 	static {
+		customers = new ArrayList<Customer>();
 		customers.add(new Customer(0,"super-admin","000","vasudevkuttumbkam"));
 		customers.add(new Customer(1,"admin","001","pune"));
 	}
@@ -58,7 +59,12 @@ public class CustomerService {
 	}
 
 	public Customer findByCustomerId(Integer cid) {
+
 		return customers.stream().filter(cst -> cst.getId()==cid).findFirst().orElse(null);
+		
+		//raise exception
+//		Customer customer=customers.stream().filter(cst -> cst.getId()==cid).findFirst().get();
+//		return customer;
 	}
 
 	
