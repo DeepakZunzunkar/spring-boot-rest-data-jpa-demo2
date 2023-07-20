@@ -1,5 +1,5 @@
 >#### About
-This basic Spring Boot Rest POC with Spring-Data JPA implementaion. use dependency as below 
+This is basic Spring Boot Rest POC with Spring-Data JPA implementaion. use dependency as below 
 - spring-boot-starter-data-jpa -2.7.13
 - spring-boot-starter-web -2.7.13
 - spring-boot-devtools -2.7.13
