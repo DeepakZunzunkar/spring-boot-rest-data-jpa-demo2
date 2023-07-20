@@ -19,7 +19,10 @@ it will do all the opeeation like delete employee will delete nested department 
 ##### Jackson - Bidirection Relationship
  - it is used to manage ownership of relashion on using bidiection mapping.
  - to resolve infinity retrive isssue  when we use bidirectional mapping .
-   
+  #### `@JsonManagedReference`
+     - apply  on parent field or on owner of the relation.
+  #### `@JsonBackReference`
+     - apply on child field.
 
 
 
