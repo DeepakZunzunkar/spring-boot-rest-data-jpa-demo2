@@ -11,4 +11,18 @@ This is basic Spring Boot Rest POC with Spring-Data JPA implementaion. use depen
 - to resolve above issue we have to use cascade =cascadeType.All which means it will perform all the releated operation atomatically.
 i.e it will save nested detartment object first and then save employee and update foreign key in employee table.
 it will do all the opeeation like delete employee will delete nested department also.
-  
+
+- to perform bidirectional in this case , we have to declaire Employee in department and to avoid eid foreign key in department table
+  means to avoid genration of extra column in department table we have to use `mappedBy="department"` where department is Department field declaire in employee class.
+  here mapedBy means it will understand it has to manage only one coulmn by combining two table.
+    
+##### Jackson - Bidirection Relationship
+ - it is used to manage ownership of relashion on using bidiection mapping.
+ - to resolve infinity retrive isssue  when we use bidirectional mapping .
+   
+
+
+
+
+
+
