@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dz.app.entities.BaseProperties;
+import com.dz.app.entities.Department;
 import com.dz.app.entities.Employee;
+import com.dz.app.repo.DepartmentRepository;
 import com.dz.app.repo.EmployeeRepository;
 import com.dz.app.utility.Constant.EmployeeStatus;
 
@@ -29,6 +31,10 @@ public class EmployeeMasterController {
 
 	@Autowired
 	private EmployeeRepository employeeRepository;
+	
+	@Autowired
+	private DepartmentRepository departmentRepository;
+
 
 	@GetMapping
 	public ResponseEntity<List<Employee>> getAllEmployees() {
@@ -73,10 +79,12 @@ public class EmployeeMasterController {
 			} else {
 				employee.setBaseProperties(new BaseProperties("A", new Date(), "spring-boot-rest-demo2", null, null));
 				employee.setStatus(EmployeeStatus.ACTIVE.getEmployeeStatusCode());
+				employee.getDepartment().setBaseProperties(employee.getBaseProperties());
 				Employee save = employeeRepository.save(employee);
 				return ResponseEntity.status(HttpStatus.CREATED).body(save);
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 		}
 	}
@@ -99,6 +107,10 @@ public class EmployeeMasterController {
 					trnSql.setGender(trn.getGender());
 					trnSql.setBirthDate(trn.getBirthDate());
 					trnSql.setSalary(trn.getSalary());
+					if(trn.getDepartment()!=null && trn.getDepartment().getName()!=null) {
+						List<Department> listd=departmentRepository.findByNameIgnoreCase(trn.getDepartment().getName());
+						trnSql.setDepartment(listd.get(0));
+					}
 					employeeRepository.save(trnSql);
 					return ResponseEntity.status(HttpStatus.ACCEPTED).body(trnSql);
 				} else {

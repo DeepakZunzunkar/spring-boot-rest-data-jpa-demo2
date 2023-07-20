@@ -4,12 +4,14 @@ import java.util.Date;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -55,6 +57,9 @@ public class Employee {
 
     @Column(name="SALARY")
     private Double salary;
+    
+    @OneToOne(cascade = CascadeType.ALL)
+    private Department department;
     
 	public Long getEid() {
 		return eid;
@@ -154,6 +159,15 @@ public class Employee {
 
 	public void setMiddleName(String middleName) {
 		this.middleName = middleName;
+	}
+
+	
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 
 	@Override
