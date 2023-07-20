@@ -41,7 +41,7 @@ public interface EmployeeRepository extends CrudRepository<Employee, Long>, Pagi
 //	    - JPQL / HQL query 
 //		- native SQL query
 
-	@Query("select emp from Employee emp")
+	@Query("select emp from Employee emp Order By eid desc")
 	public List<Employee> findAllEmployees();
 	
 	@Query(value="Select year(CURDATE())-year(birthDate) as age from hibernatedemo3.adpemployee where firstname=:fname",nativeQuery = true)

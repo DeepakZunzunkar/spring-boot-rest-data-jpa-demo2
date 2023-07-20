@@ -14,18 +14,13 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.hibernate.annotations.NamedNativeQueries;
-import org.hibernate.annotations.NamedNativeQuery;
-import org.hibernate.annotations.NamedQueries;
-import org.hibernate.annotations.NamedQuery;
-
 
 @Entity
-@Table(name="Adpemployee",schema="EMPRDEV")
+@Table(name="Adpemployee")
 public class Employee {
 
 	@Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long eid;
     
     @Column(name="FIRSTNAME")
@@ -47,7 +42,7 @@ public class Employee {
 
     @Embedded
     	@AttributeOverrides({
-    		@AttributeOverride(name="createdOn",column=@Column(name="CREATEDON",updatable= false))
+    		@AttributeOverride(name="createdon",column=@Column(name="CREATEDON",updatable= false))
     	})
     private BaseProperties baseProperties;
     
