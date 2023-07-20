@@ -45,7 +45,7 @@ public class CustomerController {
 		try {
 			customer = customerService.addCustomer(customer);	
 			if(customer==null) {
-				return ResponseEntity.status(HttpStatus.FOUND).build();
+				return ResponseEntity.status(HttpStatus.CONFLICT).build();
 			}
 			return new ResponseEntity<Customer>(customer,HttpStatus.CREATED);
 		} catch (Exception e) {
